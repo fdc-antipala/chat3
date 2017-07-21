@@ -1,0 +1,136 @@
+.panel {
+	margin-right: 3px;
+}
+
+.button {
+	background-color: #4CAF50;
+	border: none;
+	color: white;
+	/*margin-right: 30%;   
+	margin-left: 30%;*/
+	text-decoration: none;
+	display: block;
+	font-size: 16px;
+	cursor: pointer;
+	width: 100%;
+	height: 30px;
+	margin-top: 5px;
+}
+input[type=text]#name, input[type=text]#message {
+	width:100%;
+	margin-top:5px;
+}
+
+
+.chat_wrapper {
+	width: 20%;
+	height: 500px;
+	margin-right: auto;
+	margin-left: auto;
+	background: #3B5998;
+	border: 1px solid #999999;
+	padding: 10px;
+	font: 14px 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+.chat_wrapper .message_box {
+	background: #F7F7F7;
+	height:350px;
+	overflow: auto;
+	padding: 10px 10px 20px 10px;
+	border: 1px solid #999999;
+}
+
+.system_msg{color: #BDBDBD;font-style: italic;}
+.user_name{font-weight:bold;}
+.user_message{color: #88B6E0;}
+
+@media only screen and (max-width: 720px) {
+	/* For mobile phones: */
+	.chat_wrapper {
+		width: 95%;
+		height: 40%;
+	}
+
+	.button {
+		width:100%;
+		margin-right:auto;
+		margin-left:auto;
+		height:40px;
+	}
+}
+
+textarea#message {
+	width: 100%;
+	padding: 1px;
+}
+
+b[data-status-flag="0"] {
+	color: gray;
+}
+b[data-status-flag="1"] {
+	color: green;
+}
+
+b[data-flag="offline"] {
+	/*color: gray !important;*/
+}
+
+#container {
+	padding: 1em;
+}
+
+#content {
+	padding: 2em;
+}
+
+div#container {
+	width: 100%;
+	max-width: 1024px;
+	min-width: 960px;
+	margin: auto;
+}
+
+.left {
+	background-color: #E3F2FD;
+	/*width: 40%;
+	float: left;*/
+}
+.right {
+	background-color: #FFF;
+	/*width: 60%;
+	float: left;*/
+}
+
+/********
+	HEADER
+*********/
+header nav ul, #content ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+hr {
+	padding: 0;
+	margin: 0;
+}
+header nav ul li {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+/***************
+	Login
+***************/
+.form-login {
+	text-align: center;
+}
+input.form-control.btn.btn-success {
+	background: #1565C0;
+	border-radius: 17px;
+	width: 220px;
+}
+
+.form-login input {
+	width: 395px !important;
+	margin: auto;
+}
