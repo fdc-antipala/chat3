@@ -10,6 +10,7 @@ var io = socket.listen( server );
 io.sockets.on( 'connection', function( client ) {
 	console.log( "New client !" );
 	
+	
 	client.on( 'message', function( data ) {
 		console.log( 'Message received ' + data.name + ":" + data.message );
 		

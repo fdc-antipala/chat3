@@ -1,4 +1,13 @@
 <div class="content_wrapper <?php echo $this->params['controller']; ?>">
+	<div>
+		<ul>
+		<?php foreach($usersList as $index => $value): ?>
+			<li>
+				<a href="" class="<?php echo $value['status'] ? 'on' : 'off'; ?>"><?php echo $value['name'] ?></a>
+			</li>
+		<?php endforeach; ?>
+		</ul>
+	</div>
 	<div class="chat_window">
 		<div class="top_menu">
 			<div class="buttons">
@@ -13,7 +22,7 @@
 		</div>
 		
 			<ul class="messages">
-				<?php foreach($userlist as $index => $value): ?>
+				<?php foreach($messageList as $index => $value): ?>
 					<?php if ($value['from_id'] == $userID): ?>
 						<li class="message left appeared mine">
 							<div class="text_wrapper">

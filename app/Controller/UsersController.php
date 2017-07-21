@@ -9,9 +9,12 @@ class UsersController extends AppController {
 		if(!$this->isLogin())
 			$this->redirect(array('action' => 'login'));
 
-		$userlist = $this->Message->find('all');
-		// $this->_log($userlista);
-		$this->set('userlist', array_column($userlist, 'Message'));
+		$messageList = $this->Message->find('all');
+		$this->set('messageList', array_column($messageList, 'Message'));
+
+		$usersList = $this->Users->find('all');
+		$this->set('usersList', array_column($usersList, 'Users'));
+
 		$this->set('userName', $this->Session->read('Users.username'));
 		$this->set('userID', $this->Session->read('Users.id'));
 	}

@@ -145,3 +145,6 @@ input.form-control.btn.btn-success {
 /*****
 CHAT
 ******/
+a.off {
+	color: gray;
+}
