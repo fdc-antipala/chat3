@@ -14,7 +14,11 @@ io.sockets.on( 'connection', function( client ) {
 		console.log( 'Message received ' + data.name + ":" + data.message );
 		
 		//client.broadcast.emit( 'message', { name: data.name, message: data.message } );
-		io.sockets.emit( 'message', { name: data.name, message: data.message } );
+		io.sockets.emit( 'message', { 
+			name: data.name,
+			message: data.message,
+			from_id: data.from_id 
+		} );
 	});
 });
 

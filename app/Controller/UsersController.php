@@ -16,16 +16,6 @@ class UsersController extends AppController {
 		$this->set('userID', $this->Session->read('Users.id'));
 	}
 
-	/**
-	 * Insert New Message to Db.
-	 */
-	public function insertNewMessage () {
-		$this->autoRender = false;
-
-		if ($this->Message->save($this->request->data))
-			echo 'save';
-	}
-
 	public function register () {
 		if ($this->request->is('post') && !empty($this->request->data)) {
 			
