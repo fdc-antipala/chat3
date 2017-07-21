@@ -1,3 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #edeff2;
+  font-family: "Calibri", "Roboto", sans-serif;
+}
+
 .chat_window {
   position: absolute;
   width: calc(100% - 20px);
@@ -69,10 +78,18 @@
   background-color: #ffe6cb;
   margin-left: 20px;
 }
-.messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
+.messages .message.left.mine .text_wrapper {
+  background-color: #c9e8ef;
+  margin-left: 20px;
+}
+.messages .message.left.others .text_wrapper::after, .messages .message.left.others .text_wrapper::before {
   right: 100%;
   border-right-color: #ffe6cb;
 }
+/*.messages .message.left.mine. .text_wrapper::after, .messages .message.left .text_wrapper::before {
+  right: 100%;
+  border-right-color: #c9e8ef;
+}*/
 .messages .message.left .text {
   color: #c48843;
 }
@@ -187,4 +204,13 @@ span.sender {
 
 .message_template {
   display: none;
+}
+
+li.message.mine {
+  margin-left: 189px !important;
+  width: calc(86% - 85px);
+}
+
+li.message.mine .text_wrapper {
+  float: right;
 }

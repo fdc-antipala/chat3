@@ -91,12 +91,12 @@ div#container {
 }
 
 .left {
-	background-color: #E3F2FD;
+	/*background-color: #E3F2FD;*/
 	/*width: 40%;
 	float: left;*/
 }
 .right {
-	background-color: #FFF;
+	/*background-color: #FFF;*/
 	/*width: 60%;
 	float: left;*/
 }
@@ -133,4 +133,18 @@ input.form-control.btn.btn-success {
 .form-login input {
 	width: 395px !important;
 	margin: auto;
+}
+
+.message_box {
+	/*overflow: scroll;
+	height: 500px;
+	width: 600px;
+	background-color: gray;*/
+}
+
+/*****
+CHAT
+******/
+a.off {
+	color: gray;
 }
