@@ -34,7 +34,7 @@ class AppController extends Controller {
 
 	public $helpers = array('Js','Form');
 	public $components = array('Session','RequestHandler', 'DebugKit.Toolbar');
-	public $uses = array('Message');
+	public $uses = array('Message', 'Users');
 
 	/**
 	 * prints out an array
