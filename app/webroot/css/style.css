@@ -134,3 +134,10 @@ input.form-control.btn.btn-success {
 	width: 395px !important;
 	margin: auto;
 }
+
+.message_box {
+	overflow: scroll;
+	height: 500px;
+	width: 600px;
+	background-color: gray;
+}
