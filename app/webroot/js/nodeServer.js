@@ -7,8 +7,21 @@ var server = http.createServer( app );
 
 var io = socket.listen( server );
 
+var count = 0;
+
 io.sockets.on( 'connection', function( client ) {
+	// console.log(client);
 	console.log( "New client !" );
+	count++;
+	console.log(count);
+
+	client.on('new_login', function(data){
+		io.sockets.emit('new_login', {userID: data.userID});
+	});
+
+	client.on('logout', function(data){
+		io.sockets.emit('logout', {userID: data.userID});
+	});
 	
 	
 	client.on( 'message', function( data ) {

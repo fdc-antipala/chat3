@@ -121,16 +121,16 @@ header nav ul li {
 /***************
 	Login
 ***************/
-.form-login {
+.form-login, .form-register {
 	text-align: center;
 }
 input.form-control.btn.btn-success {
 	background: #1565C0;
 	border-radius: 17px;
-	width: 220px;
+	width: 395px;
 }
 
-.form-login input {
+.form-login input, form#UsersRegisterForm {
 	width: 395px !important;
 	margin: auto;
 }
