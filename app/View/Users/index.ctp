@@ -3,7 +3,8 @@
 		<ul>
 		<?php foreach($usersList as $index => $value): ?>
 			<li>
-				<a href="" class="<?php echo $value['status'] ? 'on' : 'off'; ?>"><?php echo $value['name'] ?></a>
+				<a href="" class="<?php echo $value['status'] ? 'on' : 'off'; ?>"
+				data-id="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a>
 			</li>
 		<?php endforeach; ?>
 		</ul>

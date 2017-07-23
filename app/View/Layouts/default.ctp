@@ -36,6 +36,11 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('chat');
 		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->script('jquery-3.1.1');
+
+		if ($this->params['action'] != 'login' && $this->params['action'] != 'register') {
+			echo $this->Html->script('node_modules/socket.io/node_modules/socket.io-client/dist/socket.io');
+			echo $this->Html->script('nodeClient');
+		}
 	?>
 </head>
 <body id="<?php echo $this->params['controller'] . '_' . $this->params['action']; ?>">
@@ -57,9 +62,5 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</p>
 		</div>
 	</div>
-	<?php
-		echo $this->Html->script('node_modules/socket.io/node_modules/socket.io-client/dist/socket.io');
-		echo $this->Html->script('nodeClient');
-	?>
 </body>
 </html>
