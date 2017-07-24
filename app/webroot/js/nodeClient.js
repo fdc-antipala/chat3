@@ -18,6 +18,10 @@
 		// Logout...
 		$('a#logout').click(function(e){
 			e.preventDefault();
+			ajaxLogout();
+		});
+
+		function ajaxLogout() {
 			$.ajax({
 				url : BASEURL + 'users/updateLogoutStatus',
 				type: "POST",
@@ -28,7 +32,7 @@
 				},
 				error: function(){console.log('error logout');}
 			});
-		});
+		}
 
 		socket.on( 'logout', function( data ) {
 			console.log('update logout dom');
@@ -117,6 +121,29 @@
 			
 			$( ".messages" ).html( content );
 			$(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
+		});
+
+		/**
+		 * logout after 5 minutes idle
+		 */
+		var idleTime = 0;
+		function timerIncrement() {
+			idleTime = idleTime + 1;
+			if (idleTime > 1) { // 5 minutes
+				socket.emit('logout', {userID: userID});
+				ajaxLogout();
+			}
+		}
+
+		//Increment the idle time counter every minute.
+		var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+		//Zero the idle timer on mouse movement.
+		$(this).mousemove(function (e) {
+		idleTime = 0;
+		});
+		$(this).keypress(function (e) {
+			idleTime = 0;
 		});
 	});
 })();

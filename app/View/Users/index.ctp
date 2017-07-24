@@ -1,9 +1,12 @@
+<?php date_default_timezone_set('Asia/Manila'); ?>
 <div class="content_wrapper <?php echo $this->params['controller']; ?>">
 	<div>
 		<ul>
 		<?php foreach($usersList as $index => $value): ?>
 			<li>
-				<a href="" class="<?php echo $value['status'] ? 'on' : 'off'; ?>"
+				<a href="" class="<?php 
+				$theTime = strtotime($value['last_login_time']);
+				echo $theTime < strtotime('-5 minutes') ? 'off' : 'on'; ?>"
 				data-id="<?php echo $value['id'] ?>"><?php echo $value['name'] ?></a>
 			</li>
 		<?php endforeach; ?>
