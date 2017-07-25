@@ -16,7 +16,7 @@
 		});
 
 		// Logout...
-		$('a#logout').click(function(e){
+		$('i.fa.fa-phone').click(function(e){
 			e.preventDefault();
 			ajaxLogout();
 		});
@@ -37,7 +37,7 @@
 		socket.on( 'logout', function( data ) {
 			console.log('update logout dom');
 			$('a[data-id="' + data.userID +'"]').attr('class', 'off');
-
+			$('a[data-id="' + data.userID +'"] p.contactStatus').text('Offline');
 		});
 
 		function proccessSend () {
@@ -79,6 +79,7 @@
 		socket.on( 'new_login', function( data ) {
 			
 			$('a[data-id="' + data.userID +'"]').attr('class', 'on');
+			$('a[data-id="' + data.userID +'"] p.contactStatus').text('Online');
 			
 			// update user last login time
 			if (userID == data.userID) {
@@ -129,7 +130,7 @@
 		var idleTime = 0;
 		function timerIncrement() {
 			idleTime = idleTime + 1;
-			if (idleTime > 1) { // 5 minutes
+			if (idleTime > 10) { // 5 minutes
 				socket.emit('logout', {userID: userID});
 				ajaxLogout();
 			}

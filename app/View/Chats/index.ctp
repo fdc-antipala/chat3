@@ -29,7 +29,7 @@
 		<div class="botSide">
 			<div class="contactList">
 				<ul>
-				<?php for ($i = 1; $i <= 20; $i++): ?>
+				<?php for ($i = 1; $i <= 10; $i++): ?>
 					<li>
 						<a href="">
 							<div class="itemContainer">
@@ -69,17 +69,37 @@
 			</div>
 		</div>
 		<div class="chatContent">
-			<ul>
-				<li>
-					<a href="">Chat 1</a>
-				</li>
-				<li>
-					<a href="">Chat 2</a>
-				</li>
-				<li>
-					<a href="">Chat 3</a>
-				</li>
+			<ul class="messages">
+				<?php foreach($messageList as $index => $value): ?>
+					<?php if ($value['from_id'] == $userID): ?>
+						<li class="message left appeared mine">
+							<div class="text_wrapper">
+								<div class="text"><?php echo $value['message']; ?></div>
+							</div>
+						 </li>
+					<?php else: ?>
+						<li class="message left appeared others">
+							<span class="sender"><?php echo $value['name']; ?></span>
+							<div class="avatar"></div>
+							<div class="text_wrapper">
+								<div class="text"><?php echo $value['message']; ?></div>
+							</div>
+						 </li>
+					<?php endif; ?>
+
+				<?php endforeach; ?>
 			</ul>
+			
+			<div class="bottom_wrapper clearfix" data-name="<?php echo $userName ?>" data-id="<?php echo $userID ?>">
+				<div class="message_input_wrapper">
+					<input id="messageInput" type="text" class="message_input" placeHolder="Message" autofocus="autofocus" />
+				</div>
+				<div class="send_message">
+					<div class="icon">
+					</div>
+					<div class="text" id="send">Send</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

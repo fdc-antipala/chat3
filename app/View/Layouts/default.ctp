@@ -42,7 +42,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			echo $this->Html->script('node_modules/socket.io/node_modules/socket.io-client/dist/socket.io');
 			echo $this->Html->script('nodeClient');
 		}
-		if ($this->params['controller'] == 'chats') {
+		if ((strtolower($this->params['controller']) == 'chats')
+			|| (strtolower($this->params['controller']) == 'users' && $this->params['action'] != 'login')) {
 			echo $this->Html->css('newchat');
 		}
 	?>
@@ -51,7 +52,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="container">
 		<!-- <div id="header"> -->
 		<?php if ($this->action !== 'login' && $this->action != 'register' && $this->params['controller'] != 'chats'): ?>
-		<?php echo $this->element('header'); ?>
+		<?php // echo $this->element('header'); ?>
 		<?php endif; ?>
 		<!-- </div> -->
 		<div id="content">
