@@ -1,0 +1,106 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+div#content {
+	background-color: azure;
+}
+
+header {
+	display: none;
+}
+
+.content_wrapper.chats.main {
+	width: 100%;
+	height: 100%;
+}
+
+/****SIDE****/
+.sideContainer {
+	float: left;
+	width: 21%;
+	background-color: #FFF;
+	height: 100%;
+	max-width: 16em;
+	min-width: 12.5em;
+}
+
+.avatar img, .itemContainer img {
+	width: 60px;
+}
+
+.avatar {
+	position: absolute;
+	left: 5px;
+	top: 23px;
+}
+
+.profileDetail {
+	position: relative;
+	height: 200px;
+	overflow: hidden;
+}
+
+.profileInfo {
+	position: relative;
+	white-space: nowrap;
+	padding: 30px 15px 0 82px;
+}
+
+.profileInfo p, .itemInfo p {
+	margin: 0;
+	padding: 0;
+}
+
+.profileInfo p.fullName, .itemInfo p.contactName {
+	font-weight: 600;
+}
+
+.profileInfo p.mood, .itemInfo p.contactStatus {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 95%;
+	color: #8CA8B4;
+	font-style: italic;
+}
+
+.itemContainer {
+
+}
+.itemContainer {
+	position: relative;
+}
+
+.itemInfo {
+	position: absolute;
+	top: 0;
+	padding: 10px 0 0 69px;
+}
+
+.searchContainer {
+	text-align: center;
+	margin: 20px 0 20px 0;
+}
+input[type="text"], input[type="text"]:focus {
+	border: none;
+	outline: none;
+}
+.menu {
+	display: flex;
+	text-align: center;
+}
+
+i.fa {
+	width: 45px;
+}
+
+.menu i:last-child {
+	padding-left: 90px;
+}
+
+/******Main chat******/
+.mainChatContainer {
+	display: block;
+	height: 100%;
+	overflow: hidden;
+}

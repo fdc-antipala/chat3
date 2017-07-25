@@ -35,18 +35,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('style');
 		echo $this->Html->css('chat');
 		echo $this->Html->css('bootstrap.min');
+		echo $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 		echo $this->Html->script('jquery-3.1.1');
 
 		if ($this->params['action'] != 'login' && $this->params['action'] != 'register') {
 			echo $this->Html->script('node_modules/socket.io/node_modules/socket.io-client/dist/socket.io');
 			echo $this->Html->script('nodeClient');
 		}
+		if ($this->params['controller'] == 'chats') {
+			echo $this->Html->css('newchat');
+		}
 	?>
 </head>
 <body id="<?php echo $this->params['controller'] . '_' . $this->params['action']; ?>">
 	<div id="container">
 		<!-- <div id="header"> -->
-		<?php if ($this->action !== 'login' && $this->action != 'register'): ?>
+		<?php if ($this->action !== 'login' && $this->action != 'register' && $this->params['controller'] != 'chats'): ?>
 		<?php echo $this->element('header'); ?>
 		<?php endif; ?>
 		<!-- </div> -->
