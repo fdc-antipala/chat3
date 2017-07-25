@@ -29,6 +29,7 @@
 		<div class="botSide">
 			<div class="contactList">
 				<ul>
+				<?php for ($i = 1; $i <= 20; $i++): ?>
 					<li>
 						<a href="">
 							<div class="itemContainer">
@@ -42,39 +43,30 @@
 							</div>
 						</a>
 					</li>
-					<li>
-						<a href="">
-							<div class="itemContainer">
-								<div class="itemImageContainer">
-									<img src="/chat3/img/avatar.png">
-								</div>
-								<div class="itemInfo">
-									<span><p class="contactName">Name 2</p></span>
-									<p class="contactStatus">Online</p>
-								</div>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="">
-							<div class="itemContainer">
-								<div class="itemImageContainer">
-									<img src="/chat3/img/avatar.png">
-								</div>
-								<div class="itemInfo">
-									<span><p class="contactName">Name 3</p></span>
-									<p class="contactStatus">Online</p>
-								</div>
-							</div>
-						</a>
-					</li>
+				<?php endfor; ?>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="mainChatContainer">
-		<div class="chatHeader">
-			<b>Sample name</b>
+		<div class="chatHeaderContainer">
+			<div class="chatHeader">
+				<div class="currentContactContainer">
+					<div class="currentContact">
+						<div class="currentContactAvatar">
+							<img src="/chat3/img/avatar.png">
+						</div>
+						<div class="currentContactInfo">
+							<span><p class="fullName">Jo Antipala</p></span>
+							<p class="contactStatus">Giggles giggles...</p>
+						</div>
+					</div>
+				</div>
+				<div class="currentContactMenu">
+					<i class="fa fa-video-camera" aria-hidden="true"></i>
+					<i class="fa fa-phone" aria-hidden="true"></i>
+				</div>
+			</div>
 		</div>
 		<div class="chatContent">
 			<ul>

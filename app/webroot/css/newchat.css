@@ -23,9 +23,10 @@ header {
 	height: 100%;
 	max-width: 16em;
 	min-width: 12.5em;
+	border-right: 2px solid #b1cbd8;
 }
 
-.avatar img, .itemContainer img {
+.avatar img, .itemContainer img, .currentContactAvatar img {
 	width: 60px;
 }
 
@@ -47,16 +48,16 @@ header {
 	padding: 30px 15px 0 82px;
 }
 
-.profileInfo p, .itemInfo p {
+.profileInfo p, .itemInfo p, .currentContactInfo p {
 	margin: 0;
 	padding: 0;
 }
 
-.profileInfo p.fullName, .itemInfo p.contactName {
+.profileInfo p.fullName, .itemInfo p.contactName, .currentContactInfo p.fullName {
 	font-weight: 600;
 }
 
-.profileInfo p.mood, .itemInfo p.contactStatus {
+.profileInfo p.mood, .itemInfo p.contactStatus, .currentContactInfo p.contactStatus {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: 95%;
@@ -103,4 +104,53 @@ i.fa {
 	display: block;
 	height: 100%;
 	overflow: hidden;
+	background-color: #f5fafc;
+	padding: 1em;
+}
+
+.chatHeaderContainer {
+	height: 83px;
+	border-bottom: 1px solid #b1cbd8;
+}
+
+.chatHeader {
+	position: relative;
+}
+
+.currentContactContainer {
+	position: absolute;
+	left: 0;
+	width: 100%;
+}
+
+.currentContactMenu {
+	position: absolute;
+	right: 0;
+}
+
+.currentContact {
+	position: relative;
+	width: 100%;
+}
+.currentContactAvatar {
+	position: absolute;
+	top: 0;
+}
+
+.currentContactInfo {
+	position: absolute;
+	top: 0;
+	left: 75px;
+	width: 100%;
+}
+
+
+.chatContent {
+	width: 100%;
+	margin-top: 110px;
+}
+
+.contactList ul {
+	overflow: scroll;
+	height: 100%;
 }
