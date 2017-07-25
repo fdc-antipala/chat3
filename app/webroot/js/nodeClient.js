@@ -16,8 +16,12 @@
 		});
 
 		// Logout...
-		$('a#logout').click(function(e){
+		$('i.fa.fa-phone').click(function(e){
 			e.preventDefault();
+			ajaxLogout();
+		});
+
+		function ajaxLogout() {
 			$.ajax({
 				url : BASEURL + 'users/updateLogoutStatus',
 				type: "POST",
@@ -28,12 +32,12 @@
 				},
 				error: function(){console.log('error logout');}
 			});
-		});
+		}
 
 		socket.on( 'logout', function( data ) {
 			console.log('update logout dom');
 			$('a[data-id="' + data.userID +'"]').attr('class', 'off');
-
+			$('a[data-id="' + data.userID +'"] p.contactStatus').text('Offline');
 		});
 
 		function proccessSend () {
@@ -75,6 +79,7 @@
 		socket.on( 'new_login', function( data ) {
 			
 			$('a[data-id="' + data.userID +'"]').attr('class', 'on');
+			$('a[data-id="' + data.userID +'"] p.contactStatus').text('Online');
 			
 			// update user last login time
 			if (userID == data.userID) {
@@ -117,6 +122,29 @@
 			
 			$( ".messages" ).html( content );
 			$(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
+		});
+
+		/**
+		 * logout after 5 minutes idle
+		 */
+		var idleTime = 0;
+		function timerIncrement() {
+			idleTime = idleTime + 1;
+			if (idleTime > 10) { // 5 minutes
+				socket.emit('logout', {userID: userID});
+				ajaxLogout();
+			}
+		}
+
+		//Increment the idle time counter every minute.
+		var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+		//Zero the idle timer on mouse movement.
+		$(this).mousemove(function (e) {
+		idleTime = 0;
+		});
+		$(this).keypress(function (e) {
+			idleTime = 0;
 		});
 	});
 })();

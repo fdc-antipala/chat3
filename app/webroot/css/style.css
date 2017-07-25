@@ -76,18 +76,18 @@ b[data-flag="offline"] {
 }
 
 #container {
-	padding: 1em;
+	/*padding: 1em;*/
 }
 
 #content {
-	padding: 2em;
+	/*padding: 2em;*/
 }
 
 div#container {
-	width: 100%;
+	/*width: 100%;
 	max-width: 1024px;
 	min-width: 960px;
-	margin: auto;
+	margin: auto;*/
 }
 
 .left {
