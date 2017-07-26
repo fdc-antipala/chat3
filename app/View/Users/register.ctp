@@ -1,4 +1,5 @@
-<div>
+<div class="form-register">
+	<center><h1>Register</h1></center>
 	<?php echo $this->Form->create('Users', array('url' => array('controller' => 'Users'))); ?>
 		<?php
 			echo $this->Form->inputs(array(
@@ -30,9 +31,10 @@
 					'type' => 'submit',
 					'name' => 'register',
 					'div' => array('class' => 'form-group'),
-					'class' => 'form-control'
+					'class' => 'form-control btn btn-success'
 				)
 			));
 		?>
 	<?php echo $this->Form->end(); ?>
+	<a href="<?php echo $this->Html->url('/users/login'); ?>">Login</a>
 </div>

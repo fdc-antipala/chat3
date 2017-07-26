@@ -60,4 +60,31 @@ class UsersController extends AppController {
 		$this->Session->delete('Users.isLogin');
 		$this->redirect(array('action' => 'index'));
 	}
+
+	/**
+	*	update last login time...
+	*/
+	public function updateLastLoginTime () {
+		date_default_timezone_set('Asia/Manila');
+		$this->autoRender = false;
+
+		$this->Users->id = $this->Users->field('id', array('id' => $this->request->data['userID']));
+		if ($this->Users->id) {
+			$this->Users->saveField('last_login_time', date("Y-m-d H:i:s"));
+			$this->Users->saveField('status', 1);
+		}
+	}
+
+	/**
+	*	update status...
+	*/
+	public function updateLogoutStatus () {
+		$this->autoRender = false;
+
+		$this->Users->id = $this->Users->field('id', array('id' => $this->request->data['userID']));
+		if ($this->Users->id) {
+			$this->Users->saveField('status', 0);
+			$this->logout();
+		}
+	}
 }
