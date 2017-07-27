@@ -169,6 +169,7 @@
 			console.log(userID + ' ' + currentChatID);
 
 			recipient = currentChatID;
+			$('.chatHeaderContainer').show();
 			$('.currentContactInfo p.fullName').text(currentChatName);
 
 			$.ajax({
