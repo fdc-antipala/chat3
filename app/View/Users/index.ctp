@@ -53,47 +53,50 @@
 		</div>
 	</div>
 	<div class="mainChatContainer">
-		<div class="chatHeaderContainer">
-			<div class="chatHeader">
-				<div class="currentContactContainer">
-					<div class="currentContact">
-						<div class="currentContactAvatar">
-							<img src="/chat3/img/avatar.png">
-						</div>
-						<div class="currentContactInfo">
-							<span><p class="fullName">Jo Antipala</p></span>
-							<p class="contactStatus">Giggles giggles...</p>
+		<div class="mainChatIner">
+			<div class="chatHeaderContainer">
+				<div class="chatHeader">
+					<div class="currentContactContainer">
+						<div class="currentContact">
+							<div class="currentContactAvatar">
+								<img src="/chat3/img/avatar.png">
+							</div>
+							<div class="currentContactInfo">
+								<span><p class="fullName">Jo Antipala</p></span>
+								<p class="contactStatus">Giggles giggles...</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="currentContactMenu">
-					<i class="fa fa-video-camera" aria-hidden="true"></i>
-					<i class="fa fa-phone" aria-hidden="true"></i>
+					<div class="currentContactMenu">
+						<i class="fa fa-video-camera" aria-hidden="true"></i>
+						<i class="fa fa-phone" aria-hidden="true"></i>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="chatContent">
-			<ul class="messages">
-				<?php foreach($messageList as $index => $value): ?>
-					<?php if ($value['from_id'] == $userID): ?>
-						<li class="message left appeared mine">
-							<div class="text_wrapper">
-								<div class="text"><?php echo $value['message']; ?></div>
-							</div>
-						 </li>
-					<?php else: ?>
-						<li class="message left appeared others">
-							<span class="sender"><?php echo $value['name']; ?></span>
-							<div class="avatar"></div>
-							<div class="text_wrapper">
-								<div class="text"><?php echo $value['message']; ?></div>
-							</div>
-						 </li>
-					<?php endif; ?>
+			<div class="chatContent">
+				<ul class="messages">
+					<?php foreach($messageList as $index => $value): ?>
+						<?php if ($value['from_id'] == $userID): ?>
+							<li class="message left appeared mine">
+								<div class="text_wrapper">
+									<div class="text"><?php echo $value['message']; ?></div>
+								</div>
+							 </li>
+						<?php else: ?>
+							<li class="message left appeared others">
+								<span class="sender"><?php echo $value['name']; ?></span>
+								<div class="avatar"></div>
+								<div class="text_wrapper">
+									<div class="text"><?php echo $value['message']; ?></div>
+								</div>
+							 </li>
+						<?php endif; ?>
 
-				<?php endforeach; ?>
-			</ul>
-			
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+		<div class="mainChatTextArea">
 			<div class="bottom_wrapper clearfix" data-name="<?php echo $userName ?>" data-id="<?php echo $userID ?>">
 				<div class="message_input_wrapper">
 					<input id="messageInput" type="text" class="message_input" placeHolder="Message" autofocus="autofocus" />
