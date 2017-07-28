@@ -26,6 +26,7 @@
 					</div>
 				</div>
 			</div>
+		<div class="title">Chat</div>
 		</div>
 		<div class="botSide">
 			<div class="contactList">
