@@ -19,6 +19,39 @@ class UsersController extends AppController {
 		$this->set('userID', $this->Session->read('Users.id'));
 	}
 
+	public function getMessages () {
+		$this->autoRender = false;
+		$req = $this->request->data;
+		$from_id = $req['from_id'];
+		$to_id = $req['to_id'];
+		$messageList = $this->Message->query("SELECT *
+										FROM messages
+										WHERE from_id = '$from_id' AND to_id = '$to_id'
+										UNION
+										SELECT *
+										FROM messages
+										WHERE to_id = '$from_id' AND from_id = '$to_id'");
+
+		// $conditions = array(
+		// 	'from_id' => 1,//$req['from_id'],
+		// 	'to_id' => 2//$req['to_id']
+		// );
+		// $messageList = $this->Message->find('all', array('conditions' => $conditions));
+		// $this->_log(array_column($messageList, 'Message'));
+		// $this->_log(array_column($messageList, 0));
+		
+		// exit();
+		if ($messageList)
+			return json_encode(array_column($messageList, 0));
+		else
+			return json_encode($result['error'] = 'empty');
+
+	}
+
+	public function getMessageDB () {
+
+	}
+
 	public function register () {
 		if ($this->request->is('post') && !empty($this->request->data)) {
 			

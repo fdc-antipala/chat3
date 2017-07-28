@@ -60,7 +60,9 @@ body {
   list-style: none;
   padding: 20px 10px 0 10px;
   margin: 0;
-  height: 347px;
+  height: 100%;
+  min-height: 300px;
+  max-height: 498px;
   overflow: scroll;
 }
 .messages .message {
@@ -154,11 +156,12 @@ span.sender {
 
 .bottom_wrapper {
   position: relative;
-  width: 100%;
+  width: 80%;
   background-color: #fff;
   padding: 20px 20px;
   position: absolute;
   bottom: 0;
+  right: 0;
 }
 .bottom_wrapper .message_input_wrapper {
   display: inline-block;

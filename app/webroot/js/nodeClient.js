@@ -3,6 +3,22 @@
 		var nameVal = $('.bottom_wrapper').data().name;
 		var userID = $('.bottom_wrapper').data().id;
 		console.log('USERID: ' + userID);
+		var recipientID = localStorage.getItem('currentChatID');
+		var recipientName = localStorage.getItem('currentChatName');
+		
+
+		$('.chatHeaderContainer').hide();
+		$('.chatContent ul.messages').html('empty');
+		$('.chatContent').hide();
+		$('.mainChatTextArea').hide();
+		// $('.loaderContainer').hide();
+
+		if (typeof recipientID != 'undifined' || recipientID != null) {
+			setTimeout(function(){
+				$('.loaderContainer').hide();
+				$('.contactList ul li a[data-id="' + recipientID + '"]').click();
+			},1000);
+		}
 
 		$(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
 		var socket = io.connect( 'http://localhost:8080' );
@@ -46,7 +62,7 @@
 			if (msg == "" || msg == " ")
 				return false;
 			
-			socket.emit( 'message', { name: nameVal, message: msg, from_id: userID } );
+			socket.emit( 'message', { name: nameVal, message: msg, from_id: userID, to_id: recipient} );
 			
 			// Ajax call for saving datas
 			$.ajax({
@@ -55,7 +71,8 @@
 				data: { 
 					name: nameVal,
 					message: msg,
-					from_id: userID
+					from_id: userID,
+					to_id: recipient
 				},
 				success: function(data) {
 					
@@ -99,7 +116,6 @@
 
 			console.log('on message');
 
-			// var newMsgContent = '<li> <strong>' + data.name + '</strong> : ' + data.message + '</li>';
 			var newMsgContent = '';
 			// console.log(data.from_id);
 			if (data.from_id != userID) {
@@ -146,5 +162,94 @@
 		$(this).keypress(function (e) {
 			idleTime = 0;
 		});
+
+		/**
+		 * for chat loading ajax
+		 */
+		$('.contactList ul li a').click(function(e){
+			e.preventDefault();
+			$('.chatContent').show();
+			$('.mainChatTextArea').show();
+			$('.contactList ul').find('li').removeClass('active');
+			$(this).parent().addClass('active');
+
+			var currentChatName = $(this).data().name;
+			var currentChatID = $(this).data().id;
+			localStorage.setItem('currentChatID', currentChatID);
+			localStorage.setItem('currentChatNamec', currentChatName);
+
+			console.log(userID + ' ' + currentChatID);
+
+			recipient = currentChatID;
+			$('.chatHeaderContainer').show();
+			$('.currentContactInfo p.fullName').text(currentChatName);
+
+			$.ajax({
+				url: 'http://localhost:8012/chat3/users/getMessages',
+				type: 'POST',
+				data: { 'from_id': userID, 'to_id': currentChatID},
+				success: function(data){
+					console.log(data);
+					if (JSON.parse(data) != 'empty'){
+						var sorted = JSON.parse(data).sort(function (a, b) {
+							return a.id - b.id;
+						});
+						viewSorted(sorted);
+					} else {
+						$('ul.messages').html('empty');
+					}
+					
+				},
+				error: function(){
+					console.log('error');
+				}
+			});
+		});
+
+		function viewSorted (data) {
+			var output = '';
+			$.each(data, function(key, val){
+				// console.log(val.message);
+				if (val.from_id != userID) {
+					output += '<li class="message left appeared others">';
+					output += '<span class="sender">' + val.name + '</span>';
+					output += '<div class="avatar"></div>';
+					output += '<div class="text_wrapper">';
+					output += '<div class="text">' + val.message + '</div>';
+					output += '</div>';
+					output += '</li>';
+				} else {
+					output += '<li class="message left appeared mine">';
+					output += '<div class="text_wrapper">';
+					output += '<div class="text">' + val.message + '</div>';
+					output += '</div>';
+					output += '</li>';
+				}
+				$('ul.messages').html(output);
+			});
+		}
+
+
+		var observer = new MutationObserver(function(mutations) {
+		  mutations.forEach(function(mutation) {
+		    if (!mutation.addedNodes) return
+
+		    for (var i = 0; i < mutation.addedNodes.length; i++) {
+		      // do things to your newly added nodes here
+		      var node = mutation.addedNodes[i];
+		      console.log(node);
+		    }
+		  })
+		})
+
+		observer.observe(document.body, {
+		    childList: true
+		  , subtree: true
+		  , attributes: false
+		  , characterData: false
+		})
+
+		// stop watching using:
+		// observer.disconnect()
 	});
 })();
