@@ -8,14 +8,20 @@ var server = http.createServer( app );
 var io = socket.listen( server );
 
 var count = 0;
+var basket = {};
 
 io.sockets.on( 'connection', function( client ) {
 	// console.log(client);
 	console.log( "New client !" );
 	count++;
 	console.log(count);
+	// console.log(client.id);
+	// console.log(client.store.id);
 
 	client.on('new_login', function(data){
+		console.log(data.userID);
+		console.log(client.id);
+		basket[data.userID] = client.id;
 		io.sockets.emit('new_login', {userID: data.userID});
 	});
 
@@ -23,16 +29,23 @@ io.sockets.on( 'connection', function( client ) {
 		io.sockets.emit('logout', {userID: data.userID});
 	});
 	
-	
 	client.on( 'message', function( data ) {
-		console.log( 'Message received ' + data.name + ":" + data.message );
-		
-		//client.broadcast.emit( 'message', { name: data.name, message: data.message } );
-		io.sockets.emit( 'message', { 
+		console.log(data.to_id);
+		var to = basket[data.to_id];
+
+		io.sockets.socket(to).emit('message',{ 
 			name: data.name,
 			message: data.message,
-			from_id: data.from_id 
+			from_id: data.from_id,
+			to_id: data.to_id
 		} );
+		
+		// io.to(to).emit( 'message', { 
+		// 	name: data.name,
+		// 	message: data.message,
+		// 	from_id: data.from_id,
+		// 	to_id: data.to_id
+		// } );
 	});
 });
 

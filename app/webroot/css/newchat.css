@@ -107,6 +107,7 @@ i.fa {
 	overflow: hidden;
 	background-color: #f5fafc;
 	padding: 1em;
+	min-height: 700px;
 }
 
 .chatHeaderContainer {
@@ -145,10 +146,16 @@ i.fa {
 	width: 100%;
 }
 
+.mainChatIner {
+	height: 100%;
+	display: block;
+}
 
 .chatContent {
 	width: 100%;
 	margin-top: 110px;
+	height: 100%;
+	display: block;
 }
 
 .contactList ul {

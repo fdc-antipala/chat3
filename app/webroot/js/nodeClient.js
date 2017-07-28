@@ -3,6 +3,13 @@
 		var nameVal = $('.bottom_wrapper').data().name;
 		var userID = $('.bottom_wrapper').data().id;
 		console.log('USERID: ' + userID);
+		var recipientID = localStorage.getItem('currentChatID');
+		var recipientName = localStorage.getItem('currentChatName');
+		
+		if (typeof recipientID == 'undifined' || recipientID == null) {
+			$('.chatContent ul.messages').html('empty');
+			$('.chatHeaderContainer').hide();
+		}
 
 		$(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
 		var socket = io.connect( 'http://localhost:8080' );
@@ -46,7 +53,7 @@
 			if (msg == "" || msg == " ")
 				return false;
 			
-			socket.emit( 'message', { name: nameVal, message: msg, from_id: userID } );
+			socket.emit( 'message', { name: nameVal, message: msg, from_id: userID, to_id: recipient} );
 			
 			// Ajax call for saving datas
 			$.ajax({
@@ -55,7 +62,8 @@
 				data: { 
 					name: nameVal,
 					message: msg,
-					from_id: userID
+					from_id: userID,
+					to_id: recipient
 				},
 				success: function(data) {
 					
@@ -145,6 +153,51 @@
 		});
 		$(this).keypress(function (e) {
 			idleTime = 0;
+		});
+
+		/**
+		 * for chat loading ajax
+		 */
+		$('.contactList ul li a').click(function(e){
+			e.preventDefault();
+
+			var currentChatName = $(this).data().name;
+			var currentChatID = $(this).data().id;
+			localStorage.setItem('currentChatID', currentChatID);
+			localStorage.setItem('currentChatNamec', currentChatName);
+
+			console.log(userID + ' ' + currentChatID);
+
+			recipient = currentChatID;
+			$('.chatHeaderContainer').show();
+			$('.currentContactInfo p.fullName').text(currentChatName);
+
+			$.ajax({
+				url: 'http://localhost:8012/chat3/users/getMessages',
+				type: 'POST',
+				// data : { 'userID': data.userID},
+				data: { 'from_id': userID, 'to_id': currentChatID},
+				success: function(data){
+					var output = '';
+					if (JSON.parse(data) != 'empty'){
+						$.each(JSON.parse(data), function(key, val){
+							console.log(val.message);
+							output += '<li class="message left appeared mine">';
+								output += '<div class="text_wrapper">';
+								output += '<div class="text">' + val.message + '</div>';
+								output += '</div>';
+							output += '</li>';
+							$('ul.messages').html(output);
+						});
+					} else {
+						$('ul.messages').html('empty');
+					}
+					
+				},
+				error: function(){
+					console.log('error');
+				}
+			});
 		});
 	});
 })();
