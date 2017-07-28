@@ -6,9 +6,18 @@
 		var recipientID = localStorage.getItem('currentChatID');
 		var recipientName = localStorage.getItem('currentChatName');
 		
-		if (typeof recipientID == 'undifined' || recipientID == null) {
-			$('.chatContent ul.messages').html('empty');
-			$('.chatHeaderContainer').hide();
+
+		$('.chatHeaderContainer').hide();
+		$('.chatContent ul.messages').html('empty');
+		$('.chatContent').hide();
+		$('.mainChatTextArea').hide();
+		// $('.loaderContainer').hide();
+
+		if (typeof recipientID != 'undifined' || recipientID != null) {
+			setTimeout(function(){
+				$('.loaderContainer').hide();
+				$('.contactList ul li a[data-id="' + recipientID + '"]').click();
+			},1000);
 		}
 
 		$(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
@@ -159,6 +168,8 @@
 		 */
 		$('.contactList ul li a').click(function(e){
 			e.preventDefault();
+			$('.chatContent').show();
+			$('.mainChatTextArea').show();
 			$('.contactList ul').find('li').removeClass('active');
 			$(this).parent().addClass('active');
 
@@ -217,5 +228,28 @@
 				$('ul.messages').html(output);
 			});
 		}
+
+
+		var observer = new MutationObserver(function(mutations) {
+		  mutations.forEach(function(mutation) {
+		    if (!mutation.addedNodes) return
+
+		    for (var i = 0; i < mutation.addedNodes.length; i++) {
+		      // do things to your newly added nodes here
+		      var node = mutation.addedNodes[i];
+		      console.log(node);
+		    }
+		  })
+		})
+
+		observer.observe(document.body, {
+		    childList: true
+		  , subtree: true
+		  , attributes: false
+		  , characterData: false
+		})
+
+		// stop watching using:
+		// observer.disconnect()
 	});
 })();

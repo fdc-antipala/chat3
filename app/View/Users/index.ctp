@@ -80,24 +80,7 @@
 			</div>
 			<div class="chatContent">
 				<ul class="messages">
-					<!-- <?php foreach($messageList as $index => $value): ?>
-						<?php if ($value['from_id'] == $userID): ?>
-							<li class="message left appeared mine">
-								<div class="text_wrapper">
-									<div class="text"><?php echo $value['message']; ?></div>
-								</div>
-							 </li>
-						<?php else: ?>
-							<li class="message left appeared others">
-								<span class="sender"><?php echo $value['name']; ?></span>
-								<div class="avatar"></div>
-								<div class="text_wrapper">
-									<div class="text"><?php echo $value['message']; ?></div>
-								</div>
-							 </li>
-						<?php endif; ?>
-
-					<?php endforeach; ?> -->
+					
 				</ul>
 			</div>
 		</div>
@@ -112,6 +95,9 @@
 					<div class="text" id="send">Send</div>
 				</div>
 			</div>
+		</div>
+		<div class="loaderContainer">
+			<div id="loader"></div>
 		</div>
 	</div>
 </div>
