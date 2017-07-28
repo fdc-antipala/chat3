@@ -32,8 +32,15 @@ io.sockets.on( 'connection', function( client ) {
 	client.on( 'message', function( data ) {
 		console.log(data.to_id);
 		var to = basket[data.to_id];
+		var from = basket[data.from_id];
 
 		io.sockets.socket(to).emit('message',{ 
+			name: data.name,
+			message: data.message,
+			from_id: data.from_id,
+			to_id: data.to_id
+		} );
+		io.sockets.socket(from).emit('message',{ 
 			name: data.name,
 			message: data.message,
 			from_id: data.from_id,

@@ -30,7 +30,7 @@ header {
 	width: 60px;
 }
 
-.avatar {
+.topSide .profileDetail .avatar {
 	position: absolute;
 	left: 5px;
 	top: 23px;

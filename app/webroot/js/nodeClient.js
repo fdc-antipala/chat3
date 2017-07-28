@@ -107,7 +107,6 @@
 
 			console.log('on message');
 
-			// var newMsgContent = '<li> <strong>' + data.name + '</strong> : ' + data.message + '</li>';
 			var newMsgContent = '';
 			// console.log(data.from_id);
 			if (data.from_id != userID) {
@@ -178,17 +177,19 @@
 				// data : { 'userID': data.userID},
 				data: { 'from_id': userID, 'to_id': currentChatID},
 				success: function(data){
-					var output = '';
+					console.log(data);
 					if (JSON.parse(data) != 'empty'){
-						$.each(JSON.parse(data), function(key, val){
-							console.log(val.message);
-							output += '<li class="message left appeared mine">';
-								output += '<div class="text_wrapper">';
-								output += '<div class="text">' + val.message + '</div>';
-								output += '</div>';
-							output += '</li>';
-							$('ul.messages').html(output);
-						});
+						var sorted = JSON.parse(data).sort(function (a, b) {
+							return a.id - b.id;
+                            // if (a.id > b.id) {
+                            //     return 1;
+                            // }
+                            // if (a.created < b.created) {
+                            //     return -1;
+                            // }
+                            // return 0;
+                       });
+						viewSorted(sorted);
 					} else {
 						$('ul.messages').html('empty');
 					}
@@ -199,5 +200,28 @@
 				}
 			});
 		});
+
+		function viewSorted (data) {
+			var output = '';
+			$.each(data, function(key, val){
+				// console.log(val.message);
+				if (val.from_id != userID) {
+					output += '<li class="message left appeared others">';
+					output += '<span class="sender">' + val.name + '</span>';
+					output += '<div class="avatar"></div>';
+					output += '<div class="text_wrapper">';
+					output += '<div class="text">' + val.message + '</div>';
+					output += '</div>';
+					output += '</li>';
+				} else {
+					output += '<li class="message left appeared mine">';
+					output += '<div class="text_wrapper">';
+					output += '<div class="text">' + val.message + '</div>';
+					output += '</div>';
+					output += '</li>';
+				}
+				$('ul.messages').html(output);
+			});
+		}
 	});
 })();
