@@ -162,3 +162,7 @@ i.fa {
 	/*overflow: scroll;
 	height: 100%;*/
 }
+
+.contactList li.active {
+	background-color: #C7EDFC;
+}

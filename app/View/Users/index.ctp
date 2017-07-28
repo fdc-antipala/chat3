@@ -33,7 +33,7 @@
 				<ul>
 				<?php foreach($usersList as $index => $value): ?>
 					<?php if ($userID != $value['id']): ?>
-						<li>
+						<li data-id="<?php echo $value['id'] ?>">
 						<?php ?>
 							<a href="" class="<?php echo strtotime($value['last_login_time']) < strtotime('-10 minutes') || $value['status'] == 0 ? 'off' : 'on'; ?>"
 							data-id="<?php echo $value['id'] ?>"

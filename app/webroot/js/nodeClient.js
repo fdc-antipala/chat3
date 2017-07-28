@@ -159,6 +159,8 @@
 		 */
 		$('.contactList ul li a').click(function(e){
 			e.preventDefault();
+			$('.contactList ul').find('li').removeClass('active');
+			$(this).parent().addClass('active');
 
 			var currentChatName = $(this).data().name;
 			var currentChatID = $(this).data().id;
@@ -174,21 +176,13 @@
 			$.ajax({
 				url: 'http://localhost:8012/chat3/users/getMessages',
 				type: 'POST',
-				// data : { 'userID': data.userID},
 				data: { 'from_id': userID, 'to_id': currentChatID},
 				success: function(data){
 					console.log(data);
 					if (JSON.parse(data) != 'empty'){
 						var sorted = JSON.parse(data).sort(function (a, b) {
 							return a.id - b.id;
-                            // if (a.id > b.id) {
-                            //     return 1;
-                            // }
-                            // if (a.created < b.created) {
-                            //     return -1;
-                            // }
-                            // return 0;
-                       });
+						});
 						viewSorted(sorted);
 					} else {
 						$('ul.messages').html('empty');
