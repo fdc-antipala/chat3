@@ -1,4 +1,4 @@
-<div class="content_wrapper <?php echo $this->params['controller']; ?>">
+<div class="content_wrapper <?php echo strtolower($this->params['controller']); ?>">
 	<div class="form-login">
 		<div class="form_header">
 			<h1>Sign in</h1>
