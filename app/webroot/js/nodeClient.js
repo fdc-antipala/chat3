@@ -20,7 +20,7 @@
 			},1000);
 		}
 
-		$(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
+		$(".messages").animate({ scrollTop: $('.scrollbar').prop("scrollHeight")}, 1000);
 		var socket = io.connect( 'http://localhost:8080' );
 		var ORIGIN = window.location.origin;
 		var PATH = window.location.pathname;
@@ -78,7 +78,7 @@
 					
 				}
 			});
-			$(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
+			$(".scrollbar").animate({ scrollTop: $('.scrollbar').prop("scrollHeight")}, 1000);
 			return false;
 		}
 
@@ -137,7 +137,7 @@
 			var content = actualContent + newMsgContent;
 			
 			$( ".messages" ).html( content );
-			$(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
+			$(".scrollbar").animate({ scrollTop: $('.scrollbar').prop("scrollHeight")}, 1000);
 		});
 
 		/**

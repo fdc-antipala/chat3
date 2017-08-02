@@ -1,5 +1,5 @@
 <?php date_default_timezone_set('Asia/Manila'); ?>
-<div class="content_wrapper <?php echo $this->params['controller']; ?> main">
+<div class="content_wrapper <?php echo strtolower($this->params['controller']); ?> main">
 	<div class="sideContainer">
 		<div class="topSide">
 			<div class="profileDetail">
@@ -27,9 +27,8 @@
 				</div>
 			</div>
 		</div>
-		<!-- Users list -->
-		<div class="botSide">
-			<div class="contactList">
+		<div class="scrollbar botSide" id="style-2">
+			<div class="force-overflow contactList">
 				<ul>
 				<?php foreach($usersList as $index => $value): ?>
 					<?php if ($userID != $value['id']): ?>
@@ -55,49 +54,54 @@
 			</div>
 		</div>
 	</div>
-	<!-- Chat contents -->
 	<div class="mainChatContainer">
-		<!-- Chat messages. -->
-		<div class="mainChatIner">
-			<div class="chatHeaderContainer">
-				<div class="chatHeader">
-					<div class="currentContactContainer">
-						<div class="currentContact">
-							<div class="currentContactAvatar">
-								<img src="/chat3/img/avatar.png">
-							</div>
-							<div class="currentContactInfo" data-id="" data-name="">
-								<span><p class="fullName">Jo</p></span>
-								<p class="contactStatus">Giggles giggles...</p>
-							</div>
+		<div class="chatHeaderContainer" style="">
+			<div class="chatHeader">
+				<div class="currentContactContainer">
+					<div class="currentContact">
+						<div class="currentContactAvatar">
+							<img src="/chat3/img/avatar.png">
+						</div>
+						<div class="currentContactInfo" data-id="" data-name="">
+							<span><p class="fullName">Ado</p></span>
+							<p class="contactStatus">Giggles giggles...</p>
 						</div>
 					</div>
-					<div class="currentContactMenu">
-						<i class="fa fa-video-camera" aria-hidden="true"></i>
-						<i class="fa fa-phone" aria-hidden="true"></i>
-					</div>
+				</div>
+				<div class="currentContactMenu">
+					<i class="fa fa-video-camera" aria-hidden="true"></i>
+					<i class="fa fa-phone" aria-hidden="true"></i>
 				</div>
 			</div>
-			<div class="chatContent">
+		</div>
+		<div class="chatContentContainer scrollbar" id="style-2">
+			<div class="chatContent" class="force-overflow">
 				<ul class="messages">
 					
 				</ul>
 			</div>
 		</div>
 		<div class="mainChatTextArea">
-			<div class="bottom_wrapper clearfix" data-name="<?php echo $userName ?>" data-id="<?php echo $userID ?>" data-to="<?php ?>">
-				<div class="message_input_wrapper">
-					<input id="messageInput" type="text" class="message_input" placeHolder="Message" autofocus="autofocus" />
-				</div>
-				<div class="send_message">
-					<div class="icon">
+			<div class="hr">
+				<hr>
+			</div>
+			<div class="inputArea">
+				<div class="row">
+					<div class="col-md-8">
+							<div class="message_input_wrapper">
+								<input id="messageInput" type="text" class="message_input" placeholder="Message" autofocus="autofocus">
+							</div>
+						</div>
 					</div>
-					<div class="text" id="send">Send</div>
+					<div class="col-md-4">
+						<div class="send_message">
+							<div class="icon">
+							</div>
+							<div class="text" id="send">Send</div>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="loaderContainer">
-			<div id="loader"></div>
 		</div>
 	</div>
 </div>
