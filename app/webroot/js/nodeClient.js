@@ -1,5 +1,6 @@
 (function(){
 	$(document).ready(function(){
+		// test commit
 		var nameVal = $('.bottom_wrapper').data().name;
 		var userID = $('.bottom_wrapper').data().id;
 		console.log('USERID: ' + userID);
