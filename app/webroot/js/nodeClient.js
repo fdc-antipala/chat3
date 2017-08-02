@@ -20,7 +20,10 @@
 			},1000);
 		}
 
-		$(".messages").animate({ scrollTop: $('.scrollbar').prop("scrollHeight")}, 1000);
+		setTimeout(function(){
+			$('div#style-2').animate({ scrollTop: 2000}, 'fast');
+		},1000);
+		
 		var socket = io.connect( 'http://localhost:8080' );
 		var ORIGIN = window.location.origin;
 		var PATH = window.location.pathname;
@@ -78,7 +81,8 @@
 					
 				}
 			});
-			$(".scrollbar").animate({ scrollTop: $('.scrollbar').prop("scrollHeight")}, 1000);
+			// $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
+			$('div#style-2').animate({ scrollTop: 2000}, 'fast');
 			return false;
 		}
 
@@ -137,7 +141,8 @@
 			var content = actualContent + newMsgContent;
 			
 			$( ".messages" ).html( content );
-			$(".scrollbar").animate({ scrollTop: $('.scrollbar').prop("scrollHeight")}, 1000);
+			// $(".messages").animate({ scrollTop: $('.messages').prop("scrollHeight")}, 1000);
+			$('div#style-2').animate({ scrollTop: 2000}, 'fast');
 		});
 
 		/**
@@ -189,7 +194,7 @@
 				type: 'POST',
 				data: { 'from_id': userID, 'to_id': currentChatID},
 				success: function(data){
-					console.log(data);
+					// console.log(data);
 					if (JSON.parse(data) != 'empty'){
 						var sorted = JSON.parse(data).sort(function (a, b) {
 							return a.id - b.id;
@@ -228,28 +233,5 @@
 				$('ul.messages').html(output);
 			});
 		}
-
-
-		var observer = new MutationObserver(function(mutations) {
-		  mutations.forEach(function(mutation) {
-		    if (!mutation.addedNodes) return
-
-		    for (var i = 0; i < mutation.addedNodes.length; i++) {
-		      // do things to your newly added nodes here
-		      var node = mutation.addedNodes[i];
-		      console.log(node);
-		    }
-		  })
-		})
-
-		observer.observe(document.body, {
-		    childList: true
-		  , subtree: true
-		  , attributes: false
-		  , characterData: false
-		})
-
-		// stop watching using:
-		// observer.disconnect()
 	});
 })();
