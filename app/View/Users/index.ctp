@@ -88,6 +88,7 @@
 			<div class="inputArea">
 				<div class="row">
 					<div class="col-md-8">
+						<div class="bottom_wrapper clearfix" data-name="<?php echo $userName ?>" data-id="<?php echo $userID ?>" data-to="<?php ?>">
 							<div class="message_input_wrapper">
 								<input id="messageInput" type="text" class="message_input" placeholder="Message" autofocus="autofocus">
 							</div>
